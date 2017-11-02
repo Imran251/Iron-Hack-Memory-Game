@@ -111,5 +111,28 @@ p.counter {
 	transform: rotateY(180deg);
 	-o-transform: rotateY(180deg);
 	-moz-transform: rotateY(180deg);
+}
 
+.game-over {
+	background-color: white;
+	opacity: 0.85;
+	position: absolute;
+	top: 0;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 90px;
+	color: black;
+	flex-direction: column;
+  /*margin-top: 122px;*/
+}
+
+.game-over > button{
+padding: 15px 30px 15px 25px;
+border-radius: 20px;
+background-color: lightblue;
+    /* margin: -19px; */
+margin-bottom: -235px;
 }

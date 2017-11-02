@@ -1,4 +1,5 @@
 $(document).ready(function(){
+$(".game-over").hide();
 
 var checkArray = []; // checking if both clicked fields are the same picture
 var idCheck = []; // helper array for storing clicked fields IDs so i can remove "flipped" class if they are different
@@ -39,7 +40,7 @@ var images = [
 ];
 
 
-function clicked() { // clicked function so i can unbind click event to prevet shit like clicking more then 2 fields at one try
+function clicked() { // clicked function so i can unbind click event to prevent shift like clicking more then 2 fields at one try
 	if ($(this).find(".inner-wrap").hasClass("flipped")) {
 		return;
 	}
@@ -61,22 +62,16 @@ function restart() {
 	startGame();
 }
 
-// function checkEnd() {
-// 	if (endGame === 24 || counter === 5) { //if all 24 fields are uncovered
-// 		alert("Game is over! Your score is " + counter);
-// 		restart();
-//     console.log(endGame);
-//     console.log(counter);
-// 	}
-// }
-
-
 //Ends game by calling the restart function.
 function endTheGame(){
   win.play();
-  alert("Game is over! Your score is " + counter);
+  $('.game-over').show();
   restart();
 }
+
+$(".play-again").click(function () {
+  $(".game-over").hide();
+});
 
 
 function shuffleArray(array) { // shuffle array with images
@@ -109,7 +104,7 @@ function check() {
 				$("#" + idCheck[0]).find(".inner-wrap").removeClass("flipped"); // flip the field back
 				$("#" + idCheck[1]).find(".inner-wrap").removeClass("flipped"); // second one flip back as well
 				counter++;
-        if (counter === 60){
+        if (counter === 30){
           endTheGame();
         }
         checkArray = []; //empty checking array for the next 2 clicks
@@ -127,7 +122,7 @@ function check() {
         $(".field").on("click", clicked); // bind click again
 			}
 			document.querySelector(".counter").innerHTML = counter;
-		}, 800);
+		}, 850);
 	}
 }
 
