@@ -18,7 +18,7 @@ body {
 
 h1 {
 	font-family: sans-serif;
-	color: rgba(0, 0, 0, 0.45);
+	color: rgba(0, 0, 0, 0.55);
 	text-align: center;
 	font-size: 55px;
 }
@@ -65,15 +65,13 @@ img {
 	height: 100%;
   background-size: cover;
 	border-radius: 8px;
-
 }
 
 .front, .back {
 	backface-visibility: hidden;
-	/*-webkit-backface-visibility: hidden;*/
 	position: absolute;
-	top: 0;
 	left: 0;
+	top: 0;
 }
 
 .back {
@@ -102,12 +100,6 @@ img {
 p.counter {
     text-align: center;
 }
-
-/*span {
-    text-align: center;
-    display: block;
-    font-family: sans-serif;
-}*/
 
 .wrapper > p {
     text-align: center;
