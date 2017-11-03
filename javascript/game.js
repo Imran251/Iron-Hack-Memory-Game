@@ -1,15 +1,16 @@
 $(document).ready(function(){
 $(".game-over").hide();
+$(".start-game").hide();
 
 var checkArray = []; // checking if both clicked fields are the same picture
 var idCheck = []; // helper array for storing clicked fields IDs so i can remove "flipped" class if they are different
-var counter = 0;
+var counter = 30;
 var endGame = 0; // for detecting if all fields are done
 var fields = document.querySelectorAll(".back");
 
-var natureSound = new Audio("http://k003.kiwi6.com/hotlink/2ai7iwz2j6/nature.mp3");
-var spark = new Audio("http://k003.kiwi6.com/hotlink/qdpr7bioht/spark.mp3");
-var win = new Audio("http://k003.kiwi6.com/hotlink/eptlrqspgk/win.mp3");
+var natureSound = new Audio("84322__splashdust__flipcard");
+var spark = new Audio("84322__splashdust__flipcard");
+var win = new Audio("84322__splashdust__flipcard");
 
 
 var images = [
@@ -40,7 +41,7 @@ var images = [
 ];
 
 
-function clicked() { // clicked function so i can unbind click event to prevent shift like clicking more then 2 fields at one try
+function clicked() { // clicked function so i can unbind click event
 	if ($(this).find(".inner-wrap").hasClass("flipped")) {
 		return;
 	}
@@ -57,7 +58,7 @@ function restart() {
 	$(".field .inner-wrap").removeClass("flipped"); // remove flipped class so they can flip back again at the starting position
 	checkArray = []; // empty check array
 	idCheck = []; // empty IDs check array
-	counter = 0; // reset counter
+	counter = 30; // reset counter
 	endGame = 0; // reset ending variable
 	startGame();
 }
@@ -84,7 +85,11 @@ function shuffleArray(array) { // shuffle array with images
     return array;
 }
 
+$(".start").click(function () {
+  $(".start").hide();
+});
 
+$(".start-game").show();
 function startGame() {
   natureSound.play();
   var arr = shuffleArray(images); // stores the array of shuffled images
@@ -103,8 +108,8 @@ function check() {
 			if (checkArray[0] !== checkArray[1]) { // if there is  no match
 				$("#" + idCheck[0]).find(".inner-wrap").removeClass("flipped"); // flip the field back
 				$("#" + idCheck[1]).find(".inner-wrap").removeClass("flipped"); // second one flip back as well
-				counter++;
-        if (counter === 30){
+				counter--;
+        if (counter === 0){
           endTheGame();
         }
         checkArray = []; //empty checking array for the next 2 clicks
@@ -112,7 +117,7 @@ function check() {
 				$(".field").on("click", clicked); // bind the click back again
         } else {
         spark.play();
-				counter++;
+				counter--;
 				endGame += 2; // if there is a match "endGame" is raised by 2 as 2 fields are uncovered
 				idCheck = [];// empty array for the next try
         checkArray = [];//this one as well
